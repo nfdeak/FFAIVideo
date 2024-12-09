@@ -29,7 +29,7 @@ const searchVideos = async (
   const [videoWidth, videoHeight] = toResolution(videoAspect);
 
   // Generate a random page number
-  const maxPages = 10; // Adjust this based on the Pexels API's limits
+  const maxPages = 7; // Adjust this based on the Pexels API's limits
   const randomPage = Math.floor(Math.random() * maxPages) + 1;
 
   const searchData = {
