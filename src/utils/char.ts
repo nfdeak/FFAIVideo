@@ -62,12 +62,12 @@ const addLineBreaks = (lineText: string, subtitleMaxWidth: number): string => {
 
   for (const word of words) {
     // Check if adding the next word would exceed the line width
-    if ((currentLine + word).length <= subtitleMaxWidth) {
+    if ((currentLine + ' ' + word).trim().length <= subtitleMaxWidth) {
       currentLine += (currentLine.length > 0 ? ' ' : '') + word;
     } else {
       // Add the current line to the result and start a new line
       if (result.length > 0) result += '\\N';
-      result += currentLine;
+      result += currentLine.trim();
       currentLine = word; // Start the new line with the current word
     }
   }
@@ -75,12 +75,11 @@ const addLineBreaks = (lineText: string, subtitleMaxWidth: number): string => {
   // Add the last line to the result
   if (currentLine.length > 0) {
     if (result.length > 0) result += '\\N';
-    result += currentLine;
+    result += currentLine.trim();
   }
 
   return result;
 };
-
 export {
   addLineBreaks,
   removeBlankLines,
