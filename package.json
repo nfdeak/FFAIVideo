@@ -21,6 +21,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts,.tsx -c .eslintrc.js",
     "typecheck": "eslint --ext .ts --ext .js src",
+    "prepare": "npm run build",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "test": "NODE_ENV=test jest",
     "clean": "rimraf ./examples/output",
