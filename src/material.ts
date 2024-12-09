@@ -140,6 +140,8 @@ const downloadVideos = async (
   const { videoClipDuration: maxClipDuration = 10 } = config;
   let materialVideos: MaterialInfo[] = [];
 
+  searchTerms = shuffle(searchTerms);
+
   for (const [index, searchTerm] of searchTerms.entries()) {
     let videoItems = [];
     if (config.getMaterial) {
@@ -165,8 +167,6 @@ const downloadVideos = async (
   if (config.postProcessMaterialVideos) {
     materialVideos = config.postProcessMaterialVideos(materialVideos);
   }
-
-  materialVideos = shuffle(materialVideos);
 
   const videoPaths: string[] = [];
   let totalDuration = 0.0;
