@@ -22,18 +22,25 @@ const searchVideos = async (
 ): Promise<MaterialInfo[]> => {
   const {
     videoAspect = VideoAspect.Portrait,
-    perPage = 20,
+    perPage = 10,
     materialAspectRatio = true,
   } = config;
   const videoOrientation: string = getEnumKeyByValue(VideoAspect, videoAspect);
   const [videoWidth, videoHeight] = toResolution(videoAspect);
+
+  // Generate a random page number
+  const maxPages = 50; // Adjust this based on the Pexels API's limits
+  const randomPage = Math.floor(Math.random() * maxPages) + 1;
+
   const searchData = {
     query: searchTerm,
     per_page: perPage.toString(),
+    page: randomPage.toString(), // Add the random page number
     ...(materialAspectRatio && {
       orientation: videoOrientation.toLocaleLowerCase(),
     }),
   };
+
   const queryUrl = `https://api.pexels.com/videos/search`;
   const data = await httpGet(
     buildApiUrl(queryUrl, searchData),
