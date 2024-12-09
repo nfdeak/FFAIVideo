@@ -2,7 +2,7 @@ import fs from 'fs-extra';
 import md5 from 'md5';
 import path from 'path';
 import axios from 'axios';
-import { isEmpty } from 'lodash';
+import { isEmpty, shuffle } from 'lodash';
 import { VideoAspect } from './config/constant';
 import { VideoConfig, MaterialInfo } from './config/config';
 import { toResolution } from './config/video-aspect';
@@ -165,6 +165,8 @@ const downloadVideos = async (
   if (config.postProcessMaterialVideos) {
     materialVideos = config.postProcessMaterialVideos(materialVideos);
   }
+
+  materialVideos = shuffle(materialVideos);
 
   const videoPaths: string[] = [];
   let totalDuration = 0.0;
