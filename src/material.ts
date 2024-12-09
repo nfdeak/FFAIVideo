@@ -22,7 +22,7 @@ const searchVideos = async (
 ): Promise<MaterialInfo[]> => {
   const {
     videoAspect = VideoAspect.Portrait,
-    perPage = 20,
+    perPage = 30,
     materialAspectRatio = true,
   } = config;
   const videoOrientation: string = getEnumKeyByValue(VideoAspect, videoAspect);
@@ -34,7 +34,7 @@ const searchVideos = async (
 
   const searchData = {
     query: searchTerm,
-    per_page: perPage.toString(),
+    // per_page: perPage.toString(),
     page: randomPage.toString(), // Add the random page number
     ...(materialAspectRatio && {
       orientation: videoOrientation.toLocaleLowerCase(),
