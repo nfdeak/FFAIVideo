@@ -22,7 +22,7 @@ const searchVideos = async (
 ): Promise<MaterialInfo[]> => {
   const {
     videoAspect = VideoAspect.Portrait,
-    perPage = 30,
+    perPage = 40,
     materialAspectRatio = true,
   } = config;
   const videoOrientation: string = getEnumKeyByValue(VideoAspect, videoAspect);
@@ -98,7 +98,7 @@ const searchVideos = async (
       videoItems.push(selectedItem);
     }
   }
-  return videoItems;
+  return shuffle(videoItems);
 };
 
 const saveVideo = async (
