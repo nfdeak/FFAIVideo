@@ -22,14 +22,14 @@ const searchVideos = async (
 ): Promise<MaterialInfo[]> => {
   const {
     videoAspect = VideoAspect.Portrait,
-    perPage = 15,
+    perPage = 20,
     materialAspectRatio = true,
   } = config;
   const videoOrientation: string = getEnumKeyByValue(VideoAspect, videoAspect);
   const [videoWidth, videoHeight] = toResolution(videoAspect);
 
   // Generate a random page number
-  const maxPages = 20; // Adjust this based on the Pexels API's limits
+  const maxPages = 10; // Adjust this based on the Pexels API's limits
   const randomPage = Math.floor(Math.random() * maxPages) + 1;
 
   const searchData = {
