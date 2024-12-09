@@ -34,8 +34,7 @@ const searchVideos = async (
 
   const searchData = {
     query: searchTerm,
-    // per_page: perPage.toString(),
-    page: randomPage.toString(), // Add the random page number
+    per_page: perPage.toString(),
     ...(materialAspectRatio && {
       orientation: videoOrientation.toLocaleLowerCase(),
     }),
