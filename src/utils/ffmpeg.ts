@@ -1,6 +1,4 @@
 import ffmpeg from 'fluent-ffmpeg';
-import ffmpegInstaller from '@ffmpeg-installer/ffmpeg';
-import ffprobeInstaller from '@ffprobe-installer/ffprobe';
 import { Logger } from '../utils/log';
 
 interface Metadata {
@@ -13,8 +11,10 @@ let isFFmpegPathSet = false;
 const setDefaultFFPath = () => {
   if (isFFmpegPathSet) return;
   try {
-    ffmpeg.setFfmpegPath(ffmpegInstaller.path);
-    ffmpeg.setFfprobePath(ffprobeInstaller.path);
+    const ffmpegPath = '/opt/bin/ffmpeg';  // Lambda layer path
+    const ffprobePath = '/opt/bin/ffprobe';  // Lambda layer path
+    ffmpeg.setFfmpegPath(ffmpegPath);
+    ffmpeg.setFfprobePath(ffprobePath);
     isFFmpegPathSet = true;
   } catch (e) {
     Logger.log(e);
