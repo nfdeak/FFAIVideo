@@ -77,6 +77,12 @@ const searchVideos = async (
       const w = parseInt(file['width']);
       const h = parseInt(file['height']);
 
+      if (materialAspectRatio) {
+        if (less(w, videoWidth) || less(h, videoHeight)) continue;
+      } else {
+        if (less(w, videoWidth) && less(h, videoHeight)) continue;
+      }
+
       if (w < minWidth || h < minHeight) {
         minWidth = w;
         minHeight = h;
